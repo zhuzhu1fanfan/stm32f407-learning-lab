@@ -1,0 +1,22 @@
+.DS_Store
+.metadata/
+Debug/
+Release/
+build/
+*.o
+*.d
+*.su
+*.cyclo
+*.elf
+*.axf
+*.map
+*.list
+*.bin
+*.hex
+*.launch
+
+# Keep CubeIDE project metadata and CubeMX .ioc files for reproducibility.
+
+# Avoid committing large raw videos; keep a link or compressed excerpt instead.
+evidence/**/*.mov
+evidence/**/*.mp4
