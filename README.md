@@ -14,6 +14,17 @@
 
 实测记录见 [evidence/day01/RESULTS.md](evidence/day01/RESULTS.md)，当天学习记录见 [docs/DAY01.md](docs/DAY01.md)。
 
+### M2：七色 RGB 流水灯与蜂鸣提示（已完成）
+
+- 使用 3 位颜色掩码组合红、绿、蓝，依次显示红、黄、绿、青、蓝、紫、白；
+- 使用颜色数组和统一控制函数，避免在主循环中重复编写 GPIO 操作；
+- PG7 控制板载蜂鸣器，每轮七色播放完成后蜂鸣 200 ms；
+- RGB 初始高电平保持熄灭，蜂鸣器初始低电平保持静音；
+- CMake/GCC 注释版重新构建成功：Flash 6196 B，RAM 1584 B；
+- 实物已确认七色循环和一轮结束蜂鸣提示正常。
+
+代码中的宏、颜色表、循环、位运算、三目运算符和辅助函数均附有教学注释。过程见 [docs/DAY02.md](docs/DAY02.md)，结果见 [evidence/day02/RESULTS.md](evidence/day02/RESULTS.md)。
+
 ## 硬件与工具链
 
 - 开发板：野火 STM32F407 霸天虎 V2
@@ -27,13 +38,16 @@
 
 ```text
 stm32f407-learning-lab/
-├── firmware/f407_lab/    # CubeMX 生成的 CMake/GCC 工程与用户代码
+├── firmware/
+│   ├── f407_lab/                     # M1：三色基础流水灯
+│   └── f407_rgb_7color_buzzer/       # M2：七色组合与蜂鸣提示
 ├── docs/
 │   ├── DAY01.md          # 第一次上板的过程与结论
+│   ├── DAY02.md          # 七色组合与蜂鸣器实验
 │   ├── LEARNING_LOG.md   # 持续学习记录
 │   ├── REPRODUCE.md      # 构建、接线与下载复现步骤
 │   └── ROADMAP.md        # 后续项目路线及验收标准
-└── evidence/day01/       # 构建、下载和实物观察结果
+└── evidence/             # 每个里程碑的构建与实物结果
 ```
 
 ## 快速复现
@@ -61,4 +75,4 @@ openocd -f interface/cmsis-dap.cfg \
 - HAL 用于快速形成可靠基线，同时结合参考手册理解时钟、GPIO 和寄存器；
 - 详细个人复习笔记与面试题保存在独立私有仓库，不放入本公开仓库。
 
-下一里程碑是 M2：按键输入与软件消抖，随后加入蜂鸣器状态反馈。路线见 [docs/ROADMAP.md](docs/ROADMAP.md)。
+下一里程碑是 M3：按键输入与软件消抖，让按键切换颜色或启停蜂鸣器。路线见 [docs/ROADMAP.md](docs/ROADMAP.md)。
