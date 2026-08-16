@@ -1,8 +1,11 @@
 # 固件工程
 
-`f407_lab/` 是 STM32CubeMX 生成的 STM32F407ZGT6 CMake/GCC 工程。
+本目录保存每个里程碑对应的独立 STM32CubeMX CMake/GCC 工程：
 
-- `f407_lab.ioc`：芯片、时钟和引脚的可再生成配置；
+- `f407_lab/`：M1，红绿蓝基础流水灯；
+- `f407_rgb_7color_buzzer/`：M2，七色组合流水灯与一轮结束蜂鸣提示。
+
+- `*.ioc`：芯片、时钟和引脚的可再生成配置；
 - `Core/`：应用入口、初始化代码和中断处理；
 - `Drivers/`：CMSIS 与 STM32CubeF4 HAL；
 - `CMakeLists.txt`、`CMakePresets.json`：VS Code/CMake 构建入口；
