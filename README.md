@@ -25,6 +25,17 @@
 
 代码中的宏、颜色表、循环、位运算、三目运算符和辅助函数均附有教学注释。过程见 [docs/DAY02.md](docs/DAY02.md)，结果见 [evidence/day02/RESULTS.md](evidence/day02/RESULTS.md)。
 
+### M3-M8：按键、PWM、中断、串口与定时器（已完成）
+
+- M3 `f407_key_toggle_rgb`：轮询 KEY1，按一次切换一次红灯状态；
+- M4 `f407_dual_key_pwm_breathing`：KEY1/KEY2分别启停红、绿两路PWM呼吸灯；
+- M5 `f407_key_exti_buzzer`：PA0外部中断产生按键事件，主循环非阻塞驱动蜂鸣器；
+- M6 `f407_dual_key_exti_uart_counter`：KEY1计数、KEY2清零，通过USART1把事件实时发到电脑；
+- M7 `f407_tim6_irq_uart_led_counter`：TIM6每2秒产生更新中断，计数、翻转红灯并输出日志；
+- M8 `f407_tim2_etr_decimal_counter`：KEY1作为TIM2_ETR外部脉冲，CNT按十进制进位并短鸣提示。
+
+这些工程均在野火霸天虎V2上完成实测；过程与故障修复见 [docs/DAY03.md](docs/DAY03.md)、[docs/DAY04.md](docs/DAY04.md)，验收记录见 [evidence/day03/RESULTS.md](evidence/day03/RESULTS.md) 和 [evidence/day04/RESULTS.md](evidence/day04/RESULTS.md)。
+
 ## 硬件与工具链
 
 - 开发板：野火 STM32F407 霸天虎 V2
@@ -40,7 +51,13 @@
 stm32f407-learning-lab/
 ├── firmware/
 │   ├── f407_lab/                     # M1：三色基础流水灯
-│   └── f407_rgb_7color_buzzer/       # M2：七色组合与蜂鸣提示
+│   ├── f407_rgb_7color_buzzer/       # M2：七色组合与蜂鸣提示
+│   ├── f407_key_toggle_rgb/          # M3：按键轮询翻转红灯
+│   ├── f407_dual_key_pwm_breathing/  # M4：双按键双路PWM呼吸灯
+│   ├── f407_key_exti_buzzer/         # M5：外部中断与非阻塞蜂鸣
+│   ├── f407_dual_key_exti_uart_counter/ # M6：双按键中断与串口计数
+│   ├── f407_tim6_irq_uart_led_counter/  # M7：内部定时中断
+│   └── f407_tim2_etr_decimal_counter/   # M8：外部脉冲计数与进位
 ├── docs/
 │   ├── DAY01.md          # 第一次上板的过程与结论
 │   ├── DAY02.md          # 七色组合与蜂鸣器实验
@@ -75,4 +92,4 @@ openocd -f interface/cmsis-dap.cfg \
 - HAL 用于快速形成可靠基线，同时结合参考手册理解时钟、GPIO 和寄存器；
 - 详细个人复习笔记与面试题保存在独立私有仓库，不放入本公开仓库。
 
-下一里程碑是 M3：按键输入与软件消抖，让按键切换颜色或启停蜂鸣器。路线见 [docs/ROADMAP.md](docs/ROADMAP.md)。
+下一里程碑是 M9：使用TIM3产生测试PWM、TIM4 PWM Input模式测量频率与占空比，并通过USART1输出测量结果。路线见 [docs/ROADMAP.md](docs/ROADMAP.md)。
