@@ -36,6 +36,19 @@
 
 这些工程均在野火霸天虎V2上完成实测；过程与故障修复见 [docs/DAY03.md](docs/DAY03.md)、[docs/DAY04.md](docs/DAY04.md)，验收记录见 [evidence/day03/RESULTS.md](evidence/day03/RESULTS.md) 和 [evidence/day04/RESULTS.md](evidence/day04/RESULTS.md)。
 
+### M9-M16：ADC、DMA、通信、传感器与FreeRTOS（已完成基础实验）
+
+- M9 光照阈值蜂鸣告警；
+- M10 PWM输入捕获，串口显示频率、周期和占空比；
+- M11 板载电位器单通道ADC与电压换算；
+- M12 ADC扫描模式和DMA循环采集；
+- M13 USART1中断收发；
+- M14 串口包头/包尾接收状态机；
+- M15 I2C读取板载MPU6050并输出加速度、角速度和姿态；
+- M16 FreeRTOS三任务优先级反转与互斥锁优先级继承对照。
+
+上述工程已重新执行独立 CMake Configure 和 Debug Build。实物观察结论仍以各次上板记录为准，仓库中的构建验证不替代硬件复测。
+
 ## 硬件与工具链
 
 - 开发板：野火 STM32F407 霸天虎 V2
@@ -57,7 +70,14 @@ stm32f407-learning-lab/
 │   ├── f407_key_exti_buzzer/         # M5：外部中断与非阻塞蜂鸣
 │   ├── f407_dual_key_exti_uart_counter/ # M6：双按键中断与串口计数
 │   ├── f407_tim6_irq_uart_led_counter/  # M7：内部定时中断
-│   └── f407_tim2_etr_decimal_counter/   # M8：外部脉冲计数与进位
+│   ├── f407_tim2_etr_decimal_counter/   # M8：外部脉冲计数与进位
+│   ├── f407_pwm_input_capture_uart/     # M10：PWM输入捕获
+│   ├── f407_adc_pot_uart/               # M11：单通道ADC
+│   ├── f407_adc_multichannel_dma_uart/  # M12：多通道ADC与DMA
+│   ├── f407_uart_tx_rx_it/              # M13：串口中断收发
+│   ├── f407_uart_packet_protocol/       # M14：串口数据包协议
+│   ├── f407_i2c_mpu6050_uart/           # M15：I2C与MPU6050
+│   └── freertos/                        # M16起：FreeRTOS练习
 ├── docs/
 │   ├── DAY01.md          # 第一次上板的过程与结论
 │   ├── DAY02.md          # 七色组合与蜂鸣器实验

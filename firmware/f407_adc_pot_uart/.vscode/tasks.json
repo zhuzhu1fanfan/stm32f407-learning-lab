@@ -1,0 +1,77 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "STM32: 配置 Debug",
+      "type": "process",
+      "command": "/Users/zhuzhu/.vscode/extensions/stmicroelectronics.stm32cube-ide-build-cmake-1.46.0-darwin-arm64/resources/cube-cmake/darwin/aarch64/cube-cmake",
+      "args": [
+        "--preset",
+        "Debug"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "STM32: 编译 Debug",
+      "type": "process",
+      "command": "/Users/zhuzhu/.vscode/extensions/stmicroelectronics.stm32cube-ide-build-cmake-1.46.0-darwin-arm64/resources/cube-cmake/darwin/aarch64/cube-cmake",
+      "args": [
+        "--build",
+        "build/Debug",
+        "--"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "dependsOn": [
+        "STM32: 配置 Debug"
+      ],
+      "dependsOrder": "sequence",
+      "problemMatcher": [
+        "$gcc"
+      ]
+    },
+    {
+      "label": "STM32: 编译、烧录并运行",
+      "type": "process",
+      "command": "/opt/homebrew/bin/openocd",
+      "args": [
+        "-f",
+        "interface/cmsis-dap.cfg",
+        "-f",
+        "target/stm32f4x.cfg",
+        "-c",
+        "program build/Debug/f407_adc_pot_uart.elf verify reset exit"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "dependsOn": [
+        "STM32: 编译 Debug"
+      ],
+      "dependsOrder": "sequence",
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "STM32: 修复CMake缓存",
+      "type": "process",
+      "command": "/Users/zhuzhu/.vscode/extensions/stmicroelectronics.stm32cube-ide-build-cmake-1.46.0-darwin-arm64/resources/cube-cmake/darwin/aarch64/cube-cmake",
+      "args": [
+        "--preset",
+        "Debug",
+        "--fresh"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    }
+  ]
+}
