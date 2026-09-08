@@ -2,7 +2,7 @@
 
 ## 1. 打开与构建
 
-用 VS Code 打开 `firmware/f407_lab`，选择 CMake `Debug` 预设并执行 Build。成功时输出应包含 `Linking C executable f407_lab.elf` 和退出代码 0。
+用 VS Code 打开 `firmware/stm32f407/f407_lab`，选择 CMake `Debug` 预设并执行 Build。成功时输出应包含 `Linking C executable f407_lab.elf` 和退出代码 0。
 
 如果命令行环境已安装并配置 GNU Arm 工具链，也可以在工程目录执行：
 
@@ -21,7 +21,7 @@ cmake --build --preset Debug
 
 ## 3. 下载并校验
 
-在 `firmware/f407_lab` 目录执行一条 OpenOCD 命令：
+在 `firmware/stm32f407/f407_lab` 目录执行一条 OpenOCD 命令：
 
 ```bash
 openocd -f interface/cmsis-dap.cfg \

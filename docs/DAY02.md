@@ -48,7 +48,7 @@ bit2 bit1 bit0
 - `RGB_SetColor()` 把逻辑颜色掩码转换成三个低有效 GPIO 电平；
 - `Buzzer_Beep()` 把 PG7 置高、等待指定时间，再恢复低电平。
 
-源文件 [main.c](../firmware/f407_rgb_7color_buzzer/Core/Src/main.c) 对上述用户代码逐段给出了教学注释。
+源文件 [main.c](../firmware/stm32f407/f407_rgb_7color_buzzer/Core/Src/main.c) 对上述用户代码逐段给出了教学注释。
 
 ## 为什么初始状态不同
 

@@ -63,21 +63,24 @@
 ```text
 stm32f407-learning-lab/
 ├── firmware/
-│   ├── f407_lab/                     # M1：三色基础流水灯
-│   ├── f407_rgb_7color_buzzer/       # M2：七色组合与蜂鸣提示
-│   ├── f407_key_toggle_rgb/          # M3：按键轮询翻转红灯
-│   ├── f407_dual_key_pwm_breathing/  # M4：双按键双路PWM呼吸灯
-│   ├── f407_key_exti_buzzer/         # M5：外部中断与非阻塞蜂鸣
-│   ├── f407_dual_key_exti_uart_counter/ # M6：双按键中断与串口计数
-│   ├── f407_tim6_irq_uart_led_counter/  # M7：内部定时中断
-│   ├── f407_tim2_etr_decimal_counter/   # M8：外部脉冲计数与进位
-│   ├── f407_pwm_input_capture_uart/     # M10：PWM输入捕获
-│   ├── f407_adc_pot_uart/               # M11：单通道ADC
-│   ├── f407_adc_multichannel_dma_uart/  # M12：多通道ADC与DMA
-│   ├── f407_uart_tx_rx_it/              # M13：串口中断收发
-│   ├── f407_uart_packet_protocol/       # M14：串口数据包协议
-│   ├── f407_i2c_mpu6050_uart/           # M15：I2C与MPU6050
-│   └── freertos/                        # M16起：FreeRTOS练习
+│   ├── stm32f407/                       # HAL/裸机外设练习
+│   │   ├── f407_lab/                    # M1：三色基础流水灯
+│   │   ├── f407_rgb_7color_buzzer/      # M2：七色组合与蜂鸣提示
+│   │   ├── f407_key_toggle_rgb/         # M3：按键轮询翻转红灯
+│   │   ├── f407_dual_key_pwm_breathing/ # M4：双按键双路PWM呼吸灯
+│   │   ├── f407_key_exti_buzzer/        # M5：外部中断与非阻塞蜂鸣
+│   │   ├── f407_dual_key_exti_uart_counter/ # M6：双按键中断与串口计数
+│   │   ├── f407_tim6_irq_uart_led_counter/  # M7：内部定时中断
+│   │   ├── f407_tim2_etr_decimal_counter/   # M8：外部脉冲计数与进位
+│   │   ├── f407_light_buzzer_alarm/         # M9：光照阈值告警
+│   │   ├── f407_pwm_input_capture_uart/     # M10：PWM输入捕获
+│   │   ├── f407_adc_pot_uart/               # M11：单通道ADC
+│   │   ├── f407_adc_multichannel_dma_uart/  # M12：多通道ADC与DMA
+│   │   ├── f407_uart_tx_rx_it/              # M13：串口中断收发
+│   │   ├── f407_uart_packet_protocol/       # M14：串口数据包协议
+│   │   └── f407_i2c_mpu6050_uart/           # M15：I2C与MPU6050
+│   └── freertos/                            # M16起：FreeRTOS练习
+│       └── f407_freertos_priority_inversion_uart/
 ├── docs/
 │   ├── DAY01.md          # 第一次上板的过程与结论
 │   ├── DAY02.md          # 七色组合与蜂鸣器实验
@@ -89,10 +92,10 @@ stm32f407-learning-lab/
 
 ## 快速复现
 
-1. 用 VS Code 打开 `firmware/f407_lab`。
+1. 用 VS Code 打开 `firmware/stm32f407/f407_lab`。
 2. 选择 CMake 的 `Debug` 预设并执行 Build。
 3. fireDAP 的 SWD 插头接到开发板 SWD 座，开发板另行供电。
-4. 在 `firmware/f407_lab` 目录执行：
+4. 在 `firmware/stm32f407/f407_lab` 目录执行：
 
 ```bash
 openocd -f interface/cmsis-dap.cfg \
@@ -112,4 +115,4 @@ openocd -f interface/cmsis-dap.cfg \
 - HAL 用于快速形成可靠基线，同时结合参考手册理解时钟、GPIO 和寄存器；
 - 详细个人复习笔记与面试题保存在独立私有仓库，不放入本公开仓库。
 
-下一里程碑是 M9：使用TIM3产生测试PWM、TIM4 PWM Input模式测量频率与占空比，并通过USART1输出测量结果。路线见 [docs/ROADMAP.md](docs/ROADMAP.md)。
+下一阶段进入 FreeRTOS 任务、队列、互斥锁和周期调度练习，规划见 [firmware/freertos/README.md](firmware/freertos/README.md)。
